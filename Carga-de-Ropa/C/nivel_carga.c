@@ -1,4 +1,4 @@
-#include "../include/nivel_carga.h"
+#include "../../include/nivel_carga.h"
 
 #define NIVELES 5
 

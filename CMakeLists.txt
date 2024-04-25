@@ -11,4 +11,4 @@ set(PICO_BOARD pico_w)
 # Initialize the SDK
 pico_sdk_init()
 
-add_subdirectory(Nivel-Agua)
+add_subdirectory(Carga-de-Ropa)
