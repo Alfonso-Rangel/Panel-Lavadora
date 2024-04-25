@@ -26,4 +26,4 @@ Estas tareas tienen como objetivo ayudarme a estudiar el funcionamiento de la Ra
 - [x] Conectar un segundo botón y encender los leds en sentido contrario al primer botón.
 - [x] Encender varios leds a la vez, pues de 10 leds sólo se hacen hay 4 niveles.
 - [x] Modularizar el código para que pueda usarse desde el main a través de funciones.
-- [x] Inicializar los pines con un arreglo como parámetro en lugar de *hardcodear* los pines
+- [ ] Inicializar los pines con un arreglo como parámetro en lugar de *hardcodear* los pines

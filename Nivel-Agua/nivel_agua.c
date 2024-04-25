@@ -1,8 +1,13 @@
 #include "../include/nivel_carga.h"
 
+#define NIVELES 5
+
 int val = 0;
 
-int bits[LENGTH] = {
+int boton_incrementa;
+int boton_decrementa;
+
+int bits[NIVELES] = {
        0b0000000000, // Sin carga 
        0b0000000001, // Carga baja
        0b0010010111, // Carga media
@@ -10,30 +15,31 @@ int bits[LENGTH] = {
        0b1111111111 // Capacidad máxima
 };
 
-void initNivelCarga() {
-    for (int gpio = FIRST_GPIO; gpio < FIRST_GPIO + 10; gpio++) {
-        gpio_init(gpio);
-        gpio_set_dir(gpio, GPIO_OUT);
-        gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);
+void initNivelCarga(int* leds_gpio, int button_up_gpio, int button_down_gpio) {
+    // Configura los pines GPIO para los LEDs
+    for (int i = 0; i < 10; i++) {
+        gpio_init(leds_gpio[i]);
+        gpio_set_dir(leds_gpio[i], GPIO_OUT);
+        gpio_set_outover(leds_gpio[i], GPIO_OVERRIDE_INVERT);
     }
-    gpio_init(BUTTON_GPIO_UP);
-    gpio_init(BUTTON_GPIO_DOWN);
-    gpio_set_dir(BUTTON_GPIO_UP, GPIO_IN);
-    gpio_set_dir(BUTTON_GPIO_DOWN, GPIO_IN);
-    gpio_pull_up(BUTTON_GPIO_UP);
-    gpio_pull_up(BUTTON_GPIO_DOWN);
+    
+    // Configura los pines GPIO para los botones
+    gpio_init(button_up_gpio);
+    gpio_init(button_down_gpio);
+    gpio_set_dir(button_up_gpio, GPIO_IN);
+    gpio_set_dir(button_down_gpio, GPIO_IN);
+    gpio_pull_up(button_up_gpio);
+    gpio_pull_up(button_down_gpio);
+    boton_incrementa = button_up_gpio;
+    boton_decrementa = button_down_gpio;
 }
 
 bool estaSubiendo() {
-     return !gpio_get(BUTTON_GPIO_UP);    
+     return !gpio_get(boton_incrementa);    
 }
 
 bool estaBajando() {
-     return !gpio_get(BUTTON_GPIO_DOWN);    
-}
-
-int getEstadoBoton(int button_gpio) {
-    return !gpio_get(button_gpio); // Invierte el valor porque se activa cuando se pulsa el botón
+     return !gpio_get(boton_decrementa);    
 }
 
 int getMask() {
@@ -41,9 +47,9 @@ int getMask() {
 }
 
 void incrementaNivel() {
-    val = (val == LENGTH - 1) ? 0 : val + 1;
+    val = (val == NIVELES - 1) ? 0 : val + 1;
 }
 
 void decrementaNivel() {
-    val = (val == 0) ? LENGTH - 1 : val - 1;
+    val = (val == 0) ? NIVELES - 1 : val - 1;
 }

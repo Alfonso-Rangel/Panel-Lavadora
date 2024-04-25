@@ -5,16 +5,9 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 
-#define FIRST_GPIO 2
-#define BUTTON_GPIO_UP (FIRST_GPIO + 11)
-#define BUTTON_GPIO_DOWN (FIRST_GPIO + 10)
-#define LENGTH 5
-
-void initNivelCarga();
+void initNivelCarga(int* leds_gpio, int button_up_gpio, int button_down_gpio);
 bool estaSubiendo();
 bool estaBajando();
-int getEstadoBoton(int button_gpio);
-void actualizaLEDs();
 void incrementaNivel();
 void decrementaNivel();
 int getMask();
