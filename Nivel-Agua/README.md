@@ -19,10 +19,11 @@ Una lista de materiales necesarios para visualizar el módulo del proyecto.
 | Cable tipo Dupont| 26 |
 
 
-### Reporte de Tareas | 23/04/2024
+### Reporte de Tareas | 24/04/2024
 Estas tareas tienen como objetivo ayudarme a estudiar el funcionamiento de la Raspberry para lograr el objetivo de este módulo del panel.
-- [✓] Encender todos los leds con un botón para comprobar que las conexiones sean correctas. 
-- [✓] Usar el botón para encender los leds uno por uno, de forma secuencial.
-- [✓] Conectar un segundo botón y encender los leds en sentido contrario al primer botón.
-- [✓] Encender varios leds a la vez, pues de 10 leds sólo se hacen hay 4 niveles.
-- [ ] Crear una función que devuelva el nivel de carga actualmente seleccionado.
+- [x] Encender todos los leds con un botón para comprobar que las conexiones sean correctas. 
+- [x] Usar el botón para encender los leds uno por uno, de forma secuencial.
+- [x] Conectar un segundo botón y encender los leds en sentido contrario al primer botón.
+- [x] Encender varios leds a la vez, pues de 10 leds sólo se hacen hay 4 niveles.
+- [x] Modularizar el código para que pueda usarse desde el main a través de funciones.
+- [x] Inicializar los pines con un arreglo como parámetro en lugar de *hardcodear* los pines

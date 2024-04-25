@@ -1,5 +1,6 @@
 add_executable(Nivel-Agua
     nivel_agua.c
+    test.c
 )
 
 pico_add_extra_outputs(Nivel-Agua)
