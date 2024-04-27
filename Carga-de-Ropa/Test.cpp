@@ -11,19 +11,15 @@ int main() {
     
     NivelCarga nivelCarga(leds_gpio, button_up_gpio, button_down_gpio); // Inicializa el módulo
 
-    bool botonPresionado = false;
+    
     while (true) {
-        if (nivelCarga.estaSubiendo() && !botonPresionado) {
-            botonPresionado = true;
-            nivelCarga.incrementaNivel();
-        } else if (nivelCarga.estaBajando() && !botonPresionado) {
-            botonPresionado = true;
-            nivelCarga.decrementaNivel();
-        } else {
-            botonPresionado = false;
-        }
+        if (nivelCarga.seEstaIncrementando()) { 
+            nivelCarga.incrementarNivel();
+        } else if (nivelCarga.seEstaDecrementando()) {
+            nivelCarga.decrementarNivel();
+        } 
         
-        int32_t mask = nivelCarga.getMask() << leds_gpio[0];
+        int32_t mask = nivelCarga.getMascara() << leds_gpio[0];
         gpio_set_mask(mask);
         sleep_ms(150);
         gpio_clr_mask(mask);
