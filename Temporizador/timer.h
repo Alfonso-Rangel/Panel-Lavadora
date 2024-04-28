@@ -37,4 +37,5 @@ uint32_t timer_read_value();
 void timer_turn_led_on();
 void timer_clear();
 void clear_timer();
-void get_time(int, int);
+void set_time(int, int);
+int get_time();

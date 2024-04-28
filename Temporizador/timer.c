@@ -73,11 +73,16 @@ void clear_timer() {
 }
 
 /* @brief*/
-void get_time(int min, int sec) {
+void set_time(int min, int sec) {
   if(min >= 0 && min < 60 && sec >= 0 && sec < 60) {
     d1 = (min / 10) % 10;
     d2 = min % 10;
     d3 = (sec / 10) % 10;
     d4 = sec % 10;
   }
+}
+
+/* @brief*/
+int get_time() {
+  return (d1*1000 + d2*100 + d3*10 + d4);
 }
