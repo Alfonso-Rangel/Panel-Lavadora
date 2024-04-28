@@ -21,16 +21,12 @@ int main() {
   timer_construct(pins);
   stdio_init_all();
   timer_init();
-  int a, b, c, d;
-  a = 0;
-  b = 2;
-  c = 0;
-  d = 7;
+  get_time(12, 8);
 
   while(true) {
-    uint32_t val = timer_read_value(a, b, c, d);
+    uint32_t val = timer_read_value();
     timer_turn_led_on();
     sleep_ms(timer_delay);
-    timer_clear();
+    clear_timer();
   }
 }

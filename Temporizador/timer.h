@@ -8,6 +8,15 @@ static uint32_t pins[PINS_SIZE];
 static uint32_t timer_mask;
 
 /* @brief*/
+static uint32_t const timer_delay = 6;
+
+/* @brief**/
+static int d1 = 0;
+static int d2 = 0;
+static int d3 = 0;
+static int d4 = 0;
+
+/* @brief*/
 static int bits[] = {
   0x3f,
   0x06,
@@ -21,11 +30,11 @@ static int bits[] = {
   0x67 
 };
 
-/* @brief*/
-static uint32_t const timer_delay = 6;
 
 void timer_construct(const int*);
 void timer_init();
-uint32_t timer_read_value(int, int, int, int);
+uint32_t timer_read_value();
 void timer_turn_led_on();
 void timer_clear();
+void clear_timer();
+void get_time(int, int);

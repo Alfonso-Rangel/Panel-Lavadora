@@ -21,7 +21,7 @@ void timer_init() {
 }
 
 /* @brief*/
-uint32_t timer_read_value(int min1, int min0, int sec1, int sec0) {
+uint32_t timer_read_value() {
   static int i = 0;
   if(i == 4) {
     i = 0;
@@ -33,28 +33,28 @@ uint32_t timer_read_value(int min1, int min0, int sec1, int sec0) {
       gpio_put(D2, 1);
       gpio_put(D3, 1);
       gpio_put(D4, 1);
-      val = min1;
+      val = d1;
       break;
     case 1:
       gpio_put(D1, 1);
       gpio_put(D2, 0);
       gpio_put(D3, 1);
       gpio_put(D4, 1);
-      val = min0;
+      val = d2;
       break;
     case 2:
       gpio_put(D1, 1);
       gpio_put(D2, 1);
       gpio_put(D3, 0);
       gpio_put(D4, 1);
-      val = sec1;
+      val = d3;
       break;
     case 3:
       gpio_put(D1, 1);
       gpio_put(D2, 1);
       gpio_put(D3, 1);
       gpio_put(D4, 0);
-      val = sec0;
+      val = d4;
       break;
   }
   i++;
@@ -68,6 +68,16 @@ void timer_turn_led_on() {
 }
 
 /* @brief*/
-void timer_clear() {
+void clear_timer() {
   gpio_clr_mask(timer_mask);
+}
+
+/* @brief*/
+void get_time(int min, int sec) {
+  if(min >= 0 && min < 60 && sec >= 0 && sec < 60) {
+    d1 = (min / 10) % 10;
+    d2 = min % 10;
+    d3 = (sec / 10) % 10;
+    d4 = sec % 10;
+  }
 }
