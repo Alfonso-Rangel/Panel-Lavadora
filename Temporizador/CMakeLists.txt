@@ -1,5 +1,4 @@
-#add_executable(temporizador set_timer.c)
-add_executable(timer timer.c test.c)
+add_executable(timer test.c timer.c)
 target_link_libraries(timer pico_stdlib)
 
 pico_enable_stdio_usb(timer 1)
