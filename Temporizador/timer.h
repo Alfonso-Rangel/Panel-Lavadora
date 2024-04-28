@@ -22,7 +22,9 @@ static uint32_t bits[] = {
 };
 
 /* @brief*/
-static uint32_t const delay = 6;
+static uint32_t const timer_delay = 6;
 
 void timer_construct(const int*);
 void timer_init();
+int* get_time(int);
+void timer_read_values();
