@@ -1,0 +1,18 @@
+while True:
+    if on_off_button:
+        
+        switch():
+            case 1: Lavar
+                    Opciones: Tipo de Ropa(Inicializa temperatura y carga de ropa), Temperatura, Carga de Ropa,
+                    1ro Cargar Ropa
+                    2do Seleccionar temperatura
+                    Botón de inicio:
+                        Temporizador
+                        Botón pausa:
+            case 2: Secar
+                    Encender LED y mostrar Temporizador
+            case 3: Centrifugar
+                    Encender LED y mostrar Temporizador
+
+    else:
+        print(Apagado)

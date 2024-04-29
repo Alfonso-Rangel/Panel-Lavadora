@@ -39,3 +39,9 @@ void timer_clear();
 void clear_timer();
 void set_time(int, int);
 int get_time();
+int is_time_over();
+void timer_sec(); // Prueba
+//
+int* array(int);
+int get_min();
+int get_sec();
