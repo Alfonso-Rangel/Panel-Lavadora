@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-#include "NivelCarga.cpp"
+#include "../include/NivelCarga.h"
 
 int main() {
     stdio_init_all();
@@ -9,19 +9,17 @@ int main() {
     int button_up_gpio = 13; // Define el botón de incremento
     int button_down_gpio = 12; // Define el botón de decremento
     
-    NivelCarga nivelCarga(leds_gpio, button_up_gpio, button_down_gpio); // Inicializa el módulo
+    NivelCarga nivelCarga(leds_gpio, button_up_gpio, button_down_gpio);
+    nivelCarga.init();
 
-    
     while (true) {
         if (nivelCarga.seEstaIncrementando()) { 
             nivelCarga.incrementarNivel();
         } else if (nivelCarga.seEstaDecrementando()) {
             nivelCarga.decrementarNivel();
-        } 
-        
-        int32_t mask = nivelCarga.getMascara() << leds_gpio[0];
-        gpio_set_mask(mask);
+        }
+        nivelCarga.enciendeLeds(); 
         sleep_ms(150);
-        gpio_clr_mask(mask);
+        nivelCarga.clear();
     }
 }

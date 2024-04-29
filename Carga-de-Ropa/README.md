@@ -23,14 +23,10 @@ Una lista de materiales necesarios para visualizar el módulo del proyecto.
 ## Resumen del Sprint 
 ### Criterios de aceptación
 1. Que el usuario pueda seleccionar entre 4 diferentes niveles de carga de ropa, representados por una serie de LED en el panel de la lavadora.
-2. Los niveles de carga de ropa están definidos de forma clara y comprensible para que el usuario pueda identificar fácilmente la cantidad de prendas correspondiente a cada nivel. Esto se logra gracias a que el led de 10 segmentos está dividido en 4 colores:
-* Azul (1 led) para el nivel 1.
-* Verde (4 leds) para el nivel 2.
-* Naranja (3 leds) para el nivel 3.
-* Rojo (2 leds) para el nivel 4. 
+2. Los niveles de carga de ropa están definidos de forma clara y comprensible para que el usuario pueda identificar fácilmente la cantidad de prendas correspondiente a cada nivel.
 3. Al seleccionar un nivel de carga, la lavadora ajusta automáticamente el llenado de agua y el ciclo de lavado para adaptarse a la cantidad de ropa seleccionada.
 ### Definición de Terminado (Done)
-[x] Se ha implementado una clase llamada NivelCarga que controla el nivel de carga de ropa en la lavadora.
-[x] La clase NivelCarga proporciona métodos para *seleccionar*, *ajustar* y *obtener* el nivel de carga.
-[x] Se ha integrado la clase NivelCarga con la Raspberry Pico W para permitir la interacción del usuario con los diferentes niveles de carga.
-[x] La documentación del código y los comentarios son claros y completos para facilitar la comprensión y mantenimiento del sistema.
+- [x] Se ha implementado una clase llamada NivelCarga que controla el nivel de carga de ropa en la lavadora.
+- [x] La clase NivelCarga proporciona métodos para *seleccionar*, *ajustar* y *obtener* el nivel de carga, además de *encender* los LEDs.
+- [x] Se ha integrado la clase NivelCarga con la Raspberry Pico W para permitir la interacción del usuario con los diferentes niveles de carga.
+- [x] La documentación del código y los comentarios son claros y completos para facilitar la comprensión y mantenimiento del sistema.
