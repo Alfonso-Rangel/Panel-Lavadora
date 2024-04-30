@@ -1,57 +1,53 @@
-#include "pico/stdlib.h"
-#include "hardware/gpio.h"
-#include "../Carga-de-Ropa/NivelCarga.cpp"
+#include "../include/ModoLavadora.h"
+#include "../include/NivelCarga.h"   
+ModoLavadora::ModoLavadora(NivelCarga* nivelCarga, int botonCambio) // Recibe también temperatura, centrifugado y temporizador 
+    : modoActual(MANUAL), nivelCarga(nivelCarga), pinBotonCambio(botonCambio)
+{
+}
 
-class ModoLavadora {
-private:
-    enum Modo { MANUAL, LAVADO_RAPIDO, LAVADO_NORMAL }; // Enum
-    Modo modoActual; // Modo actual de la lavadora
-    int pinBotonCambio;
-    NivelCarga* nivelCarga; // Puntero a la instancia de la clase NivelCarga
-    // Temperatura* temperatura;
-    // Centrifugado* centrifugado;
-    // Temposrizador* temporizador;
+void ModoLavadora:: init() {
+    gpio_init(pinBotonCambio);
+    gpio_set_dir(pinBotonCambio, GPIO_IN);
+    gpio_pull_up(pinBotonCambio);
+}
 
-public:
-    ModoLavadora(NivelCarga* nivelCarga, int botonCambio) // Recibe también temperatura, centrifugado y temporizador 
-        : modoActual(MANUAL), nivelCarga(nivelCarga), pinBotonCambio(botonCambio)
-    {
-        gpio_init(pinBotonCambio);
-        gpio_set_dir(pinBotonCambio, GPIO_IN);
-        gpio_pull_up(pinBotonCambio);
+ModoLavadora::~ModoLavadora() {
+}
+
+void ModoLavadora::cambiaModo() {
+    switch (modoActual) {
+        case MANUAL: modoActual = LAVADO_RAPIDO; break;
+        case LAVADO_RAPIDO: modoActual = LAVADO_NORMAL; break;
+        case LAVADO_NORMAL: modoActual = MANUAL; break;
+        default: break;
     }
+}
 
-    ~ModoLavadora() {
+void ModoLavadora::aplicaModo() {
+    switch (modoActual) {
+        case MANUAL: 
+            nivelCarga->setNivelApagado();
+            break;
+        case LAVADO_RAPIDO:
+            nivelCarga->setNivelBajo();
+            // temperatura->setTemperatura();
+            // centrifugado->setCentrifugado();
+            // temposrizador->setTemporizador(); 
+            break;
+        case LAVADO_NORMAL:
+            nivelCarga->setNivelMedio(); 
+            // temperatura->setTemperatura();
+            // centrifugado->setCentrifugado();
+            // temposrizador->setTemporizador(); 
+            break;
+        default: break;
     }
+}
 
-    void cambiaModo() {
-        // Verificar el modo y ajustar el nivel de carga
-        switch (modoActual) {
-            case MANUAL:
-                modoActual = LAVADO_RAPIDO;
-                break;
-            case LAVADO_RAPIDO:
-                nivelCarga->setNivel(1);
-                // temperatura->setTemperatura();
-                // centrifugado->setCentrifugado();
-                // temposrizador->setTemporizador(); 
-                modoActual = LAVADO_NORMAL;
-                break;
-            case LAVADO_NORMAL:
-                nivelCarga->setNivel(3); 
-                // temperatura->setTemperatura();
-                // centrifugado->setCentrifugado();
-                // temposrizador->setTemporizador(); 
-                modoActual = MANUAL;
-                break;
-        }
-    }
+bool ModoLavadora::modoManual() {
+    return modoActual == MANUAL;
+}
 
-    bool modoManual() {
-        return modoActual == MANUAL;
-    }
-
-    bool seEstaCambiandoModo() {
-        return !gpio_get(pinBotonCambio);
-    }
-};
+bool ModoLavadora::seEstaCambiandoModo() {
+    return !gpio_get(pinBotonCambio);
+}

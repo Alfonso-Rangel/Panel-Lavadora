@@ -12,3 +12,4 @@ set(PICO_BOARD pico_w)
 pico_sdk_init()
 
 add_subdirectory(Carga-de-Ropa)
+add_subdirectory(Modo-Lavadora)

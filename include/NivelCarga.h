@@ -12,7 +12,8 @@
 class NivelCarga {
 private:
     int nivelActual; // Representa el nivel de carga de ropa actual
-    int* mascarasNiveles; // Máscaras de niveles de carga
+    int* mascaraLeds; // Máscaras de los leds del display
+    int* mascaraNiveles; // Máscaras de los niveles de carga para el lavado rápido y normal
     int* pinesLed; // Puntero a arreglo de 10 elementos para los LEDs
     int pinBotonIncremento; // Pin GPIO para el botón de incremento
     int pinBotonDecremento; // Pin GPIO para el botón de decremento
@@ -81,6 +82,11 @@ public:
      * @brief Enciende los LEDs correspondientes al nivel de carga actual.
      */
     void enciendeLeds();
+
+    void setNivelBajo();
+    void setNivelMedio();
+    void setNivelApagado();
+
 };
 
 #endif // NIVELCARGA_H

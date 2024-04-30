@@ -1,6 +1,7 @@
 add_executable(Modo-Lavadora
     ModoLavadora.cpp
     Test.cpp
+    ../Carga-de-Ropa/NivelCarga.cpp
 )
 
 pico_add_extra_outputs(Modo-Lavadora)
