@@ -48,18 +48,18 @@ int main() {
         }
         last_button_state = current_button_state;
                 
-        if (countdown_active) {
-                int32_t mask = bits[val] << FIRST_GPIO;
-                gpio_set_mask(mask);
-                sleep_ms(1000);  // Espera 1 seg  
-                gpio_clr_mask(mask);
+                if (countdown_active) {
+                        int32_t mask = bits[val] << FIRST_GPIO;
+                        gpio_set_mask(mask);
+                        sleep_ms(1000);  // Espera 1 seg  
+                        gpio_clr_mask(mask);
 
-                if (val > 0) {
-                        val--;
-                } else {
+                        if (val > 0) {
+                                val--;
+                        } else {
                         countdown_active = false; // Detiene la cuenta regresiva al llegar a 0
+                        }
                 }
-        }
         }
 }
 
