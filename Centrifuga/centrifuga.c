@@ -23,3 +23,13 @@ int bits[10] = {
 int main() {
     stdio_init_all();
     printf("Centrifugado - Presiona el boton para empezar o reiniciar\n");
+
+for (int gpio = FIRST_GPIO; gpio < FIRST_GPIO + 7; gpio++) {
+        gpio_init(gpio);
+        gpio_set_dir(gpio, GPIO_OUT);
+        gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);
+    }
+
+    gpio_init(BUTTON_GPIO);
+    gpio_set_dir(BUTTON_GPIO, GPIO_IN);
+    gpio_pull_up(BUTTON_GPIO);
