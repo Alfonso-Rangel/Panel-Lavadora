@@ -10,7 +10,7 @@ Este proyecto simula la función de centrifugado de una lavadora utilizando una 
 5. Protoboard y cables de conexión
 
 - Funcionalidad del Software:
-  El código en C controla el display de 7 segmentos para mostrar una cuenta regresiva de 9 a 0, simbolizando la duración restante del ciclo de centrifugado. El botón permite al usuario interactuar con el sistema para iniciar o reiniciar la cuenta regresiva en cualquier momento.
+El código en C controla el display de 7 segmentos para mostrar una cuenta regresiva de 9 a 0, simbolizando la duración restante del ciclo de centrifugado. El botón permite al usuario interactuar con el sistema para iniciar o reiniciar la cuenta regresiva en cualquier momento.
 
 
 
