@@ -21,15 +21,30 @@ int bits[10] = {
 };
 
 int main() {
-    stdio_init_all();
-    printf("Centrifugado - Presiona el boton para empezar o reiniciar\n");
+        stdio_init_all();
+        printf("Centrifugado - Presiona el boton para empezar o reiniciar\n");
 
-for (int gpio = FIRST_GPIO; gpio < FIRST_GPIO + 7; gpio++) {
-        gpio_init(gpio);
-        gpio_set_dir(gpio, GPIO_OUT);
-        gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);
-    }
+        for (int gpio = FIRST_GPIO; gpio < FIRST_GPIO + 7; gpio++) {
+                gpio_init(gpio);
+                gpio_set_dir(gpio, GPIO_OUT);
+                gpio_set_outover(gpio, GPIO_OVERRIDE_INVERT);
+        }
 
-    gpio_init(BUTTON_GPIO);
-    gpio_set_dir(BUTTON_GPIO, GPIO_IN);
-    gpio_pull_up(BUTTON_GPIO);
+        gpio_init(BUTTON_GPIO);
+        gpio_set_dir(BUTTON_GPIO, GPIO_IN);
+        gpio_pull_up(BUTTON_GPIO);
+        
+        int val = 9;
+        bool countdown_active = false;
+        bool last_button_state = true; // inicializa como no presionado (pull-up)
+
+        while (true) {
+                bool current_button_state = gpio_get(BUTTON_GPIO);
+
+        // Detecta cambio de no presionado a presionado)
+                if (last_button_state && !current_button_state) {
+                        countdown_active = true;  // Habilita la cuenta regresiva
+                        val = 9;                  // Reinicia el contador
+        }
+        last_button_state = current_button_state;
+
