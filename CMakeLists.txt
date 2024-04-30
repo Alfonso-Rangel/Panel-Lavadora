@@ -11,4 +11,4 @@ set(PICO_BOARD pico_w)
 # Initialize the SDK
 pico_sdk_init()
 
-add_subdirectory(Main)
+add_subdirectory(Temperatura)

@@ -1,4 +1,5 @@
 add_executable(Temperatura
+	temperatura.c
     
 )
 
