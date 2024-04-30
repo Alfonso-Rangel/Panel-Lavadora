@@ -28,7 +28,6 @@ int main() {
   int val;
 
   int32_t mask;
-  int time=6;
   while(true) {
     if(!(min == 0 && sec == 0)) {
       for(int i = 0; i < 4; i++) {
@@ -66,7 +65,7 @@ int main() {
         if(i >= 0 && i < 3) {
           mask = bits[val] << PIN_A;
           gpio_set_mask(mask);
-          sleep_ms(time);
+          sleep_ms(timer_delay);
           gpio_clr_mask(mask);
         }
         else {
