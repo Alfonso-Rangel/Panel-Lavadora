@@ -4,7 +4,7 @@
 
 #define BUTTON_GPIO 15
 #define PIN_A 2
-#define D1 2
+#define D1 10
 
 int main() {
 

@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "timer.h"
@@ -22,10 +21,13 @@ int main() {
   timer_construct(pins);
   stdio_init_all();
   timer_init();
-  set_time(2, 59);
+  set_time(20, 0);
+  /* min, sec and val there's going in timer.h
+   * and maybe ctr*/
   int min = get_min();
   int sec = get_sec();
   int val;
+  int ctr = 0;
 
   int32_t mask;
   while(true) {
@@ -62,26 +64,22 @@ int main() {
             break;
         }
         // turn leds on
-        if(i >= 0 && i < 3) {
-          mask = bits[val] << PIN_A;
-          gpio_set_mask(mask);
-          sleep_ms(timer_delay);
-          gpio_clr_mask(mask);
-        }
-        else {
-          mask = bits[val] << PIN_A;
-          gpio_set_mask(mask);
-          sleep_ms(60);
-          gpio_clr_mask(mask);
-        }
+        mask = bits[val] << PIN_A;
+        gpio_set_mask(mask);
+        sleep_ms(timer_delay);
+        gpio_clr_mask(mask);
       }
       // endfor
-      if(sec == 0) {
-        min--;
-        sec = 59;
-      } else {
-        sec--;
+      if(ctr == 50) {
+        if(sec == 0) {
+          min--;
+          sec = 59;
+        } else {
+          sec--;
+        }
+        ctr = 0;
       }
+      ctr++;
     }
     else {
       gpio_put(D1, 0);

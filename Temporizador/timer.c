@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "hardware/gpio.h"
 #include "pin_list.h"
 #include "timer.h"
@@ -74,50 +73,23 @@ void clear_timer() {
 }
 
 /* @brief*/
-void set_time(int min, int sec) {
-  if(min >= 0 && min < 60 && sec >= 0 && sec < 60) {
-    d1 = (min / 10) % 10;
-    d2 = min % 10;
-    d3 = (sec / 10) % 10;
-    d4 = sec % 10;
+void set_time(int _min, int _sec) {
+  if(_min >= 0 && _min < 60 && _sec >= 0 && _sec < 60) {
+    d1 = (_min / 10) % 10;
+    d2 = _min % 10;
+    d3 = (_sec / 10) % 10;
+    d4 = _sec % 10;
   }
 }
-
 /* @brief*/
 int get_time() {
   return (d1*1000 + d2*100 + d3*10 + d4);
 }
-
 /* @brief*/
 int is_time_over() {
   return(d1 == 0 && d2 == 0 && d3 == 0 && d4 == 0);
 }
-
-// Prueba
-void timer_sec() {
-  gpio_put(D1, 1);
-  gpio_put(D2, 1);
-  gpio_put(D3, 1);
-  gpio_put(D4, 0);
-  static int i;
-  i = d4;
-  if(i == 0) {
-    i = 9;
-  }
-  else {
-    i--;
-  }
-  timer_mask = bits[i] << PIN_A;
-}
 //
-int* array(int time) {
-  int* list = (int*)malloc(sizeof(int) * 4);
-  list[0] = time / 1000;
-  list[1] = (time / 100) % 10;
-  list[2] = (time / 10) % 10;
-  list[3] = time % 10;
-  return list;
-}
 int get_min() {
   return (d1*10 + d2);
 }

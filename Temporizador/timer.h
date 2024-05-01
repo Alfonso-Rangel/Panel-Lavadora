@@ -8,7 +8,7 @@ static uint32_t pins[PINS_SIZE];
 static uint32_t timer_mask;
 
 /* @brief*/
-static uint32_t const timer_delay = 6;
+static uint32_t const timer_delay = 5;
 
 /* @brief**/
 static int d1 = 0;
@@ -16,8 +16,13 @@ static int d2 = 0;
 static int d3 = 0;
 static int d4 = 0;
 
+/* @brief**/
+static int min = 0;
+static int sec = 0;
+static int val = 0;
+
 /* @brief*/
-static int bits[] = {
+static int const bits[] = {
   0x3f,
   0x06,
   0x5b,
@@ -40,8 +45,8 @@ void clear_timer();
 void set_time(int, int);
 int get_time();
 int is_time_over();
-void timer_sec(); // Prueba
-//
-int* array(int);
 int get_min();
 int get_sec();
+void set_min();
+void set_sec();
+void preset_sec();
