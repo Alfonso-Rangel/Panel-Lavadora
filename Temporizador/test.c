@@ -21,10 +21,10 @@ int main() {
   timer_construct(pins);
   stdio_init_all();
   timer_init();
-  set_time(10, 0);
-  /* val y ctr deben ir en timer.h */
-  int val;
-  int ctr = 0;
+  set_time(1, 00);
+
+  /* val debe ir en timer.h */
+  unsigned int val;
 
   int32_t mask;
   while(true) {
@@ -32,32 +32,16 @@ int main() {
       for(int i = 0; i < 4; i++) {
         switch(i) {
           case 0:
-            gpio_put(D1, 0);
-            gpio_put(D2, 1);
-            gpio_put(D3, 1);
-            gpio_put(D4, 1);
-            val = get_min() / 10;
+            val = set_anode_1();
             break;
           case 1:
-            gpio_put(D1, 1);
-            gpio_put(D2, 0);
-            gpio_put(D3, 1);
-            gpio_put(D4, 1);
-            val = get_min() % 10;
+            val = set_anode_2();
             break;
           case 2:
-            gpio_put(D1, 1);
-            gpio_put(D2, 1);
-            gpio_put(D3, 0);
-            gpio_put(D4, 1);
-            val = get_sec() / 10;
+            val = set_anode_3();
             break;
           case 3:
-            gpio_put(D1, 1);
-            gpio_put(D2, 1);
-            gpio_put(D3, 1);
-            gpio_put(D4, 0);
-            val = get_sec() % 10;
+            val = set_anode_4();
             break;
         }
         // turn leds on
@@ -67,26 +51,22 @@ int main() {
         gpio_clr_mask(mask);
       }
       // endfor
-      if(ctr == 50) {
+      if(get_ctr() == 50) {
         if(get_sec() == 0) {
           dec_min();
           preset_sec();
         } else {
           dec_sec();
         }
-        ctr = 0;
+        reset_ctr();
       }
-      ctr++;
+      inc_ctr();
     }
     else {
-      gpio_put(D1, 0);
-      gpio_put(D2, 0);
-      gpio_put(D3, 0);
-      gpio_put(D4, 0);
-
-      mask = bits[0] << PIN_A;
+      val = set_zeros();
+      mask = bits[val] << PIN_A;
       gpio_set_mask(mask);
-      sleep_ms(1000);
+      sleep_ms(timer_delay);
       gpio_clr_mask(mask);
     }
     //endif

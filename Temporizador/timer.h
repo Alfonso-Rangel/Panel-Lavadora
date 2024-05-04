@@ -10,10 +10,17 @@ static uint32_t timer_mask;
 /* @brief*/
 static uint32_t const timer_delay = 5;
 
-/* @brief**/
-static int min = 0;
-static int sec = 0;
-static int val = 0;
+/* @brief*/
+static unsigned int min = 0;
+
+/* @brief*/
+static unsigned int sec = 0;
+
+/* @brief*/
+static unsigned int val = 0;
+
+/* @brief Contador para el decremento de los minutos y segundos */
+static unsigned int ctr = 0;
 
 /* @brief*/
 static int const bits[] = {
@@ -52,10 +59,10 @@ void clear_timer();
 void set_time(unsigned int, unsigned int);
 
 /* @brief Regresa el valor de los minutos */
-int get_min();
+unsigned int get_min();
 
 /* @brief Regresa el valor de los segundos */
-int get_sec();
+unsigned int get_sec();
 
 /* @brief Decrementa los minutos */
 void dec_min();
@@ -65,3 +72,31 @@ void dec_sec();
 
 /* @brief Presetea los segundos a 59 */
 void preset_sec();
+
+/* @brief Regresa el valor del contador */
+unsigned int get_ctr();
+
+/* @brief Incrementa el contador */
+void inc_ctr();
+
+/* @brief Resetea el contador */
+void reset_ctr();
+
+/* @brief Enciende el primer ánodo mientras apaga los demás,
+ * y regresa el número que encenderá */
+unsigned int set_anode_1();
+
+/* @brief Enciende el segundo ánodo mientras apaga los demás,
+ * y regresa el número que encenderá */
+unsigned int set_anode_2();
+
+/* @brief Enciende el tercer ánodo mientras apaga los demás,
+ * y regresa el número que encenderá  */
+unsigned int set_anode_3();
+
+/* @brief Enciende el cuarto ánodo mientras apaga los demás,
+ * y regresa el número que encenderá  */
+unsigned int set_anode_4();
+
+/* @brief Agrega ceros en los cuatro ánodos */
+unsigned int set_zeros();
