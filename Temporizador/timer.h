@@ -4,16 +4,16 @@
 /* @brief*/
 static uint32_t pins[PINS_SIZE];
 
-/* @brief*/
+/* @brief La Máscara */
 static uint32_t timer_mask;
 
-/* @brief*/
+/* @brief Tiempo de retardo */
 static uint32_t const timer_delay = 5;
 
-/* @brief*/
+/* @brief Minutos del temporizador */
 static unsigned int min = 0;
 
-/* @brief*/
+/* @brief Segundos del temporizador */
 static unsigned int sec = 0;
 
 /* @brief El número que se desea prender */

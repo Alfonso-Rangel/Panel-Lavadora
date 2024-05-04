@@ -21,7 +21,7 @@ int main() {
   timer_construct(pins);
   stdio_init_all();
   timer_init();
-  set_time(1, 00);
+  set_time(3, 0);
 
   int32_t mask;
   while(true) {
