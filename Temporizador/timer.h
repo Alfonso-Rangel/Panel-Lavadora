@@ -44,9 +44,6 @@ void timer_construct(const int*);
 void timer_init();
 
 /* @brief*/
-uint32_t timer_read_value();
-
-/* @brief*/
 void timer_turn_led_on();
 
 /* @brief*/

@@ -18,47 +18,6 @@ void timer_init() {
   }
 }
 
-uint32_t timer_read_value() {
-  static int i = 0;
-  if(i == 4) {
-    i = 0;
-  }
-  int val;
-  switch(i) {
-    case 0:
-      gpio_put(D1, 0);
-      gpio_put(D2, 1);
-      gpio_put(D3, 1);
-      gpio_put(D4, 1);
-      val = get_min() / 10;
-      break;
-    case 1:
-      gpio_put(D1, 1);
-      gpio_put(D2, 0);
-      gpio_put(D3, 1);
-      gpio_put(D4, 1);
-      val = get_min() % 10;
-      break;
-    case 2:
-      gpio_put(D1, 1);
-      gpio_put(D2, 1);
-      gpio_put(D3, 0);
-      gpio_put(D4, 1);
-      val = get_sec() / 10;
-      break;
-    case 3:
-      gpio_put(D1, 1);
-      gpio_put(D2, 1);
-      gpio_put(D3, 1);
-      gpio_put(D4, 0);
-      val = get_sec() % 10;;
-      break;
-  }
-  i++;
-  timer_mask = bits[val] << PIN_A;
-  return timer_mask;
-}
-
 void timer_turn_led_on() {
   gpio_set_mask(timer_mask);
 }
