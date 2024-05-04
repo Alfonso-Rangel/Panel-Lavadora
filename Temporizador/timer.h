@@ -11,12 +11,6 @@ static uint32_t timer_mask;
 static uint32_t const timer_delay = 5;
 
 /* @brief**/
-static int d1 = 0;
-static int d2 = 0;
-static int d3 = 0;
-static int d4 = 0;
-
-/* @brief**/
 static int min = 0;
 static int sec = 0;
 static int val = 0;
@@ -36,15 +30,38 @@ static int const bits[] = {
 };
 
 
+/* @brief*/
 void timer_construct(const int*);
+
+/* @brief*/
 void timer_init();
+
+/* @brief*/
 uint32_t timer_read_value();
+
+/* @brief*/
 void timer_turn_led_on();
+
+/* @brief*/
 void timer_clear();
+
+/* @brief*/
 void clear_timer();
+
+/* @brief Inicializa los minutos y los segundos */
 void set_time(int, int);
+
+/* @brief Regresa el valor de los minutos */
 int get_min();
+
+/* @brief Regresa el valor de los segundos */
 int get_sec();
+
+/* @brief Decrementa los minutos */
 void dec_min();
+
+/* @brief Decrementa los segundos */
 void dec_sec();
+
+/* @brief Presetea los segundos a 59 */
 void preset_sec();

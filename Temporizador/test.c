@@ -21,9 +21,8 @@ int main() {
   timer_construct(pins);
   stdio_init_all();
   timer_init();
-  set_time(1, 0);
-  /* min, sec and val there's going in timer.h
-   * and maybe ctr*/
+  set_time(10, 0);
+  /* val y ctr deben ir en timer.h */
   int val;
   int ctr = 0;
 
