@@ -74,25 +74,31 @@ void clear_timer() {
 
 /* @brief*/
 void set_time(int _min, int _sec) {
-  if(_min >= 0 && _min < 60 && _sec >= 0 && _sec < 60) {
-    d1 = (_min / 10) % 10;
-    d2 = _min % 10;
-    d3 = (_sec / 10) % 10;
-    d4 = _sec % 10;
-  }
+  d1 = (_min / 10) % 10;
+  d2 = _min % 10;
+  d3 = (_sec / 10) % 10;
+  d4 = _sec % 10;
+
+  min = _min;
+  sec = _sec;
 }
 /* @brief*/
-int get_time() {
-  return (d1*1000 + d2*100 + d3*10 + d4);
-}
-/* @brief*/
-int is_time_over() {
-  return(d1 == 0 && d2 == 0 && d3 == 0 && d4 == 0);
-}
-//
 int get_min() {
-  return (d1*10 + d2);
+  return min;
 }
+/* @brief*/
 int get_sec() {
-  return (d3*10 + d4);
+  return sec;
+}
+/* @brief*/
+void dec_min() {
+  min--;
+}
+/* @brief*/
+void dec_sec() {
+  sec--;
+}
+/* @brief*/
+void preset_sec() {
+  sec = 59;
 }

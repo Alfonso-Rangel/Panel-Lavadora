@@ -21,17 +21,15 @@ int main() {
   timer_construct(pins);
   stdio_init_all();
   timer_init();
-  set_time(20, 0);
+  set_time(1, 0);
   /* min, sec and val there's going in timer.h
    * and maybe ctr*/
-  int min = get_min();
-  int sec = get_sec();
   int val;
   int ctr = 0;
 
   int32_t mask;
   while(true) {
-    if(!(min == 0 && sec == 0)) {
+    if(!(get_min() == 0 && get_sec() == 0)) {
       for(int i = 0; i < 4; i++) {
         switch(i) {
           case 0:
@@ -39,28 +37,28 @@ int main() {
             gpio_put(D2, 1);
             gpio_put(D3, 1);
             gpio_put(D4, 1);
-            val = min / 10;
+            val = get_min() / 10;
             break;
           case 1:
             gpio_put(D1, 1);
             gpio_put(D2, 0);
             gpio_put(D3, 1);
             gpio_put(D4, 1);
-            val = min % 10;
+            val = get_min() % 10;
             break;
           case 2:
             gpio_put(D1, 1);
             gpio_put(D2, 1);
             gpio_put(D3, 0);
             gpio_put(D4, 1);
-            val = sec / 10;
+            val = get_sec() / 10;
             break;
           case 3:
             gpio_put(D1, 1);
             gpio_put(D2, 1);
             gpio_put(D3, 1);
             gpio_put(D4, 0);
-            val = sec % 10;
+            val = get_sec() % 10;
             break;
         }
         // turn leds on
@@ -71,11 +69,11 @@ int main() {
       }
       // endfor
       if(ctr == 50) {
-        if(sec == 0) {
-          min--;
-          sec = 59;
+        if(get_sec() == 0) {
+          dec_min();
+          preset_sec();
         } else {
-          sec--;
+          dec_sec();
         }
         ctr = 0;
       }
