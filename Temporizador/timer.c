@@ -104,42 +104,46 @@ void reset_ctr() {
   ctr = 0;
 }
 
-unsigned int set_anode_1() {
+unsigned int get_val() {
+  return val;
+}
+
+void set_anode_1() {
   gpio_put(D1, 0);
   gpio_put(D2, 1);
   gpio_put(D3, 1);
   gpio_put(D4, 1);
-  return (get_min() / 10);
+  val = get_min() / 10;
 }
 
-unsigned int set_anode_2() {
+void set_anode_2() {
   gpio_put(D1, 1);
   gpio_put(D2, 0);
   gpio_put(D3, 1);
   gpio_put(D4, 1);
-  return (get_min() % 10);
+  val = get_min() % 10;
 }
 
-unsigned int set_anode_3() {
+void set_anode_3() {
   gpio_put(D1, 1);
   gpio_put(D2, 1);
   gpio_put(D3, 0);
   gpio_put(D4, 1);
-  return (get_sec() / 10);
+  val = get_sec() / 10;
 }
 
-unsigned int set_anode_4() {
+void set_anode_4() {
   gpio_put(D1, 1);
   gpio_put(D2, 1);
   gpio_put(D3, 1);
   gpio_put(D4, 0);
-  return (get_sec() % 10);
+  val = get_sec() % 10;
 }
 
-unsigned int set_zeros() {
+void set_zeros() {
   gpio_put(D1, 0);
   gpio_put(D2, 0);
   gpio_put(D3, 0);
   gpio_put(D4, 0);
-  return 0;
+  val = 0;
 }

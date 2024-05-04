@@ -16,7 +16,7 @@ static unsigned int min = 0;
 /* @brief*/
 static unsigned int sec = 0;
 
-/* @brief*/
+/* @brief El número que se desea prender */
 static unsigned int val = 0;
 
 /* @brief Contador para el decremento de los minutos y segundos */
@@ -82,21 +82,24 @@ void inc_ctr();
 /* @brief Resetea el contador */
 void reset_ctr();
 
+/* @brief Regresa el valor de val */
+unsigned int get_val();
+
 /* @brief Enciende el primer ánodo mientras apaga los demás,
- * y regresa el número que encenderá */
-unsigned int set_anode_1();
+ * y se establece el número que se encenderá */
+void set_anode_1();
 
 /* @brief Enciende el segundo ánodo mientras apaga los demás,
- * y regresa el número que encenderá */
-unsigned int set_anode_2();
+ * y se establece el número que se encenderá */
+void set_anode_2();
 
 /* @brief Enciende el tercer ánodo mientras apaga los demás,
- * y regresa el número que encenderá  */
-unsigned int set_anode_3();
+ * y se establece el número que se encenderá */
+void set_anode_3();
 
 /* @brief Enciende el cuarto ánodo mientras apaga los demás,
- * y regresa el número que encenderá  */
-unsigned int set_anode_4();
+ * y se establece el número que se encenderá */
+void set_anode_4();
 
-/* @brief Agrega ceros en los cuatro ánodos */
-unsigned int set_zeros();
+/* @brief Agrega ceros a los cuatro ánodos */
+void set_zeros();

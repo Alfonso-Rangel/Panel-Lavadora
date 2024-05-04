@@ -23,29 +23,26 @@ int main() {
   timer_init();
   set_time(1, 00);
 
-  /* val debe ir en timer.h */
-  unsigned int val;
-
   int32_t mask;
   while(true) {
     if(!(get_min() == 0 && get_sec() == 0)) {
       for(int i = 0; i < 4; i++) {
         switch(i) {
           case 0:
-            val = set_anode_1();
+            set_anode_1();
             break;
           case 1:
-            val = set_anode_2();
+            set_anode_2();
             break;
           case 2:
-            val = set_anode_3();
+            set_anode_3();
             break;
           case 3:
-            val = set_anode_4();
+            set_anode_4();
             break;
         }
         // turn leds on
-        mask = bits[val] << PIN_A;
+        mask = bits[get_val()] << PIN_A;
         gpio_set_mask(mask);
         sleep_ms(timer_delay);
         gpio_clr_mask(mask);
@@ -63,8 +60,8 @@ int main() {
       inc_ctr();
     }
     else {
-      val = set_zeros();
-      mask = bits[val] << PIN_A;
+      set_zeros();
+      mask = bits[get_val()] << PIN_A;
       gpio_set_mask(mask);
       sleep_ms(timer_delay);
       gpio_clr_mask(mask);
