@@ -67,7 +67,7 @@ void clear_timer() {
   gpio_clr_mask(timer_mask);
 }
 
-void set_time(int _min, int _sec) {
+void set_time(unsigned int _min, unsigned int _sec) {
   min = _min;
   sec = _sec;
 }

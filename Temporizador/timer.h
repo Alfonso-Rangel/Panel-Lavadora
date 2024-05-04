@@ -49,7 +49,7 @@ void timer_clear();
 void clear_timer();
 
 /* @brief Inicializa los minutos y los segundos */
-void set_time(int, int);
+void set_time(unsigned int, unsigned int);
 
 /* @brief Regresa el valor de los minutos */
 int get_min();
