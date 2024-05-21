@@ -4,7 +4,7 @@
 /* @brief*/
 static uint32_t pins[PINS_SIZE];
 
-/* @brief La Máscara */
+/* @brief La máscara */
 static uint32_t timer_mask;
 
 /* @brief Tiempo de retardo */
@@ -37,23 +37,25 @@ static int const bits[] = {
 };
 
 
+/*TAL VEZ BORRAR get_min, get_sec, dec_min, dec_sec, preset_sec, 
+ * get_ctr, inc_ctr, reset_ctr por redundacia.
+ *
+ * dec_ctr hace todo eso.*/
+
 /* @brief*/
 void timer_construct(const int*);
 
 /* @brief*/
-void timer_init();
+void init_timer();
 
 /* @brief*/
 void timer_turn_led_on();
 
 /* @brief*/
-void timer_clear();
-
-/* @brief*/
 void clear_timer();
 
 /* @brief Inicializa los minutos y los segundos */
-void set_time(unsigned int, unsigned int);
+void set_timer(unsigned int, unsigned int);
 
 /* @brief Regresa el valor de los minutos */
 unsigned int get_min();
@@ -69,6 +71,9 @@ void dec_sec();
 
 /* @brief Presetea los segundos a 59 */
 void preset_sec();
+
+/* @brief Verifica si el tiempo se acabo */
+int is_timer_over();
 
 /* @brief Regresa el valor del contador */
 unsigned int get_ctr();
@@ -100,3 +105,6 @@ void set_anode_4();
 
 /* @brief Agrega ceros a los cuatro ánodos */
 void set_zeros();
+
+/* @brief Decrementa el contador */
+void dec_ctr();

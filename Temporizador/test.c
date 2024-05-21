@@ -20,12 +20,12 @@ int main() {
   };
   timer_construct(pins);
   stdio_init_all();
-  timer_init();
-  set_time(3, 0);
+  init_timer();
+  set_timer(59, 59);
 
   int32_t mask;
   while(true) {
-    if(!(get_min() == 0 && get_sec() == 0)) {
+    if(!is_timer_over()) {
       for(int i = 0; i < 4; i++) {
         switch(i) {
           case 0:
@@ -48,16 +48,7 @@ int main() {
         gpio_clr_mask(mask);
       }
       // endfor
-      if(get_ctr() == 50) {
-        if(get_sec() == 0) {
-          dec_min();
-          preset_sec();
-        } else {
-          dec_sec();
-        }
-        reset_ctr();
-      }
-      inc_ctr();
+      dec_ctr();
     }
     else {
       set_zeros();

@@ -10,10 +10,11 @@ void timer_construct(const int a[]) {
   timer_mask = 0;
 }
 
-void timer_init() {
+void init_timer() {
   for(int i = 0; i < PINS_SIZE; i++) {
     gpio_init(pins[i]);
     gpio_set_dir(pins[i], GPIO_OUT);
+    // Son ánodos
     gpio_set_outover(pins[i], GPIO_OVERRIDE_INVERT);
   }
 }
@@ -26,7 +27,7 @@ void clear_timer() {
   gpio_clr_mask(timer_mask);
 }
 
-void set_time(unsigned int _min, unsigned int _sec) {
+void set_timer(unsigned int _min, unsigned int _sec) {
   min = _min;
   sec = _sec;
 }
@@ -49,6 +50,13 @@ void dec_sec() {
 
 void preset_sec() {
   sec = 59;
+}
+
+int is_timer_over(){
+  if(min == 0 && sec == 0) {
+    return 1;
+  }
+  return 0;
 }
 
 unsigned int get_ctr() {
@@ -105,4 +113,17 @@ void set_zeros() {
   gpio_put(D3, 0);
   gpio_put(D4, 0);
   val = 0;
+}
+
+void dec_ctr() {
+  if(ctr == 50) {
+    if(sec == 0) {
+      min--;
+      sec = 59;
+    } else {
+      sec--;
+    }
+    ctr = 0;
+  }
+  ctr++;
 }
