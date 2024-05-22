@@ -13,3 +13,4 @@ pico_sdk_init()
 
 add_subdirectory(Carga-de-Ropa)
 add_subdirectory(Modo-Lavadora)
+add_subdirectory(UART)
