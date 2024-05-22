@@ -13,4 +13,4 @@ pico_sdk_init()
 
 add_subdirectory(Encendido-Apagado)
 add_subdirectory(Temporizador)
-add_subdirectory(Inicio)
+add_subdirectory(Menu)
