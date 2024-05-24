@@ -9,6 +9,8 @@ static uint32_t const menu_delay = 5;
 /* @brief El número que se desea prender */
 static unsigned int val = 0;
 
+static unsigned int anode4 = 1;
+
 /* @brief*/
 static int const bits[] = {
   0x3f, // 0-o
@@ -33,3 +35,8 @@ void set_anode_3();
 void set_anode_4();
 /* @brief Retorna el valor*/
 unsigned int get_val();
+/* @brief V1 del código.
+ * Lo pongo en esta función
+ * para modularizar
+ */
+void turn_on_leds();

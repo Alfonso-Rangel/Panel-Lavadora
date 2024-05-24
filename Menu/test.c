@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
-#include "menu.h"
 #include "pin_list.h"
-
+#include "menu.h"
+#include "button.h"
 int main() {
   int pins[] = {
     PIN_A,
@@ -24,27 +24,16 @@ int main() {
 
   int32_t mask;
 
+  init_buttons();
+
   while (true) {
-    for (int i = 0; i < 4; i++) {
-      switch (i) {
-        case 0:
-          set_anode_1();
-          break;
-        case 1:
-          set_anode_2();
-          break;
-        case 2:
-          set_anode_3();
-          break;
-        case 3:
-          set_anode_4();
-          break;
-      }
-      mask = bits[get_val()] << PIN_A;
-      gpio_set_mask(mask);
-      sleep_ms(menu_delay);
-      gpio_clr_mask(mask);
+    if (is_on_off_btn_press()) {
+      bool val1 = is_ok_btn_press();
+      bool val2 = is_mov_btn_press();
     }
-    // endfor
+    //bool val = is_on_off_btn_press();
+    //bool val = is_ok_btn_press();
+    //bool val = is_mov_btn_press();
+    sleep_ms(1000);
   }
 }

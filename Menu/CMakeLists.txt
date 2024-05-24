@@ -1,4 +1,4 @@
-add_executable(menu test.c menu.c)
+add_executable(menu test.c menu.c button.c)
 target_link_libraries(menu pico_stdlib)
 
 pico_enable_stdio_usb(menu 1)

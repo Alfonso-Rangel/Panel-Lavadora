@@ -10,3 +10,7 @@
 #define D2 11
 #define D3 12
 #define D4 13
+
+#define ON_OFF_BUTTON 16
+#define OK_BUTTON 14
+#define MOV_BUTTON 15
