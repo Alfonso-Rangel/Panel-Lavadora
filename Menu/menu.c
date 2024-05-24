@@ -48,13 +48,22 @@ void set_anode_4() {
   gpio_put(D2, 1);
   gpio_put(D3, 1);
   gpio_put(D4, 0);
-  //val = 1;
-  if(!get_mov_btn()) {
-    anode4++;
-    if (anode4 > 3) {
-      anode4 = 1;
+  //if(!get_mov_btn()) {
+  //  anode4++;
+  //  if (anode4 > 3) {
+  //    anode4 = 1;
+  //  }
+  //}
+  if (count == 5) {
+    if(!get_mov_btn()) {
+      anode4++;
+      if (anode4 > 3) {
+        anode4 = 1;
+      }
     }
+    count = 0;
   }
+  count++;
   // endif
 }
 
@@ -63,9 +72,6 @@ unsigned int get_val() {
 }
 
 void turn_on_leds() {
-  /* Necesitas los pins
-   * construct(pins), stdio_init_all
-   * init y mask*/
   for (int i = 0; i < 4; i++) {
     switch (i) {
       case 0:
@@ -81,6 +87,14 @@ void turn_on_leds() {
         set_anode_4();
         break;
     }
+    if (i < 3) {
+      mask = bits[val] << PIN_A;
+    } else {
+      mask = bits[anode4] << PIN_A;
+    }
+    gpio_set_mask(mask);
+    sleep_ms(menu_delay);
+    gpio_clr_mask(mask);
     //mask = bits[get_val()] << PIN_A;
     //gpio_set_mask(mask);
     //sleep_ms(menu_delay);

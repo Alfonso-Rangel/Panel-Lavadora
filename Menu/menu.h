@@ -6,10 +6,15 @@ static uint32_t pins[PINS_SIZE];
 /* @brief Tiempo de retardo */
 static uint32_t const menu_delay = 5;
 
+/* @brief Tiempo de retardo */
+static uint32_t mask = 0;
+
 /* @brief El número que se desea prender */
 static unsigned int val = 0;
 
 static unsigned int anode4 = 1;
+
+static unsigned int count = 0;
 
 /* @brief*/
 static int const bits[] = {
