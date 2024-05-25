@@ -14,19 +14,21 @@ public:
 
     void enviar_string(const char* str) {
         uart_puts(uart_id_, str);
-        uart_putc(uart_id_, '\n'); // Añadir un delimitador de nueva línea
+        uart_putc(uart_id_, '\n'); 
     }
 
-    void esperar_respuesta() {
-        char buffer[255];
+    char* esperar_respuesta(char *buffer) {
         int index = 0;
 
-        while (uart_is_readable_within_us(uart_id_, 1000000)) { // Esperar hasta 1 segundo
-            buffer[index++] = uart_getc(uart_id_);
+        while (uart_is_readable(uart_id_)) {
             if (index >= sizeof(buffer) - 1) break;
+            char c = uart_getc(uart_id_);
+            if (c == '\n' || c == '\0') {break;}
+            buffer[index++] = c;
         }
         buffer[index] = '\0';
-        printf("Respuesta recibida: %s\n", buffer);
+        return buffer;
+        
     }
 
 private:
@@ -36,18 +38,19 @@ private:
 int main() {
     stdio_init_all();
 
-    Controlador controlador(uart0, 0, 1, 115200); // UART0, TX=GP0, RX=GP1, Baud rate = 115200
+    Controlador controlador(uart1, 4, 5, 115200); // UART0, TX=GP0, RX=GP1, Baud rate = 115200
 
     const char* mensajes[] = {"NORMAL", "RAPIDO", "MANUAL"};
     int codigo = 0;
 
     while (true) {
-        controlador.enviar_string(mensajes[0]);
-        sleep_ms(100); // Esperar un poco antes de leer la respuesta
-        controlador.esperar_respuesta();
-        codigo = (codigo > 2) ? 0 : codigo + 1;
-        
-        sleep_ms(1000); // Esperar un segundo antes de enviar el siguiente código
+        printf("Instrucción dada: %s\n", mensajes[codigo]);
+        controlador.enviar_string(mensajes[codigo]);
+        sleep_ms(1000); // Esperar un poco antes de leer la respuesta
+        char respuesta[16];
+        controlador.esperar_respuesta(respuesta);
+        printf("Respuesta recibida: %s\n", respuesta);
+        codigo = (codigo >= 2) ? 0 : codigo + 1;
     }
 
     return 0;
