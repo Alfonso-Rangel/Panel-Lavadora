@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "hardware/gpio.h"
-#include "pin_list.h"
+#include "../Menu/pin_list.h"
 #include "timer.h"
 #include "../Menu/common.h"
 
