@@ -23,13 +23,6 @@ bool is_on_off_btn_press() {
     on_off_val = !on_off_val;
   }
   on_off_prev_state = on_off_current_state;
-
-  if (on_off_val) {
-    printf("Botón ON-OFF ENCENDIDO\n");
-  } else {
-    printf("Botón ON-OFF APAGADO\n");
-  }
-
   return on_off_val;
 }
 
@@ -39,13 +32,6 @@ bool is_mov_btn_press() {
     mov_val = !mov_val;
   }
   mov_prev_state = mov_current_state;
-
-  if (mov_val) {
-    printf("Botón MOV ENCENDIDO\n");
-  } else {
-    printf("Botón MOV APAGADO\n");
-  }
-
   return mov_val;
 }
 
@@ -55,13 +41,6 @@ bool is_ok_btn_press() {
     ok_val = !ok_val;
   }
   ok_prev_state = ok_current_state;
-
-  if (ok_val) {
-    printf("Botón OK ENCENDIDO\n");
-  } else {
-    printf("Botón OK APAGADO\n");
-  }
-
   return ok_val;
 }
 
