@@ -1,15 +1,4 @@
 #include <stdio.h>
-#define PINS_SIZE 11
-
-/* @brief*/
-static uint32_t pins[PINS_SIZE];
-
-/* @brief La máscara */
-static uint32_t timer_mask;
-
-/* @brief Tiempo de retardo */
-static uint32_t const timer_delay = 5;
-
 /* @brief Minutos del temporizador */
 static unsigned int min = 0;
 
@@ -26,12 +15,6 @@ static unsigned int timer_ctr = 0;
  * get_ctr, inc_ctr, reset_ctr por redundacia.
  *
  * dec_ctr hace todo eso.*/
-
-/* @brief*/
-void timer_construct(const int*);
-
-/* @brief*/
-void init_timer();
 
 /* @brief*/
 void timer_turn_led_on();

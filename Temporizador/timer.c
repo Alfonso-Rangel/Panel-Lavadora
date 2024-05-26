@@ -2,30 +2,14 @@
 #include "hardware/gpio.h"
 #include "pin_list.h"
 #include "timer.h"
-#include "../Menu/bits.h"
-
-void timer_construct(const int a[]) {
-  for(int i = 0; i < PINS_SIZE; i++) {
-    pins[i] = a[i];
-  }
-  timer_mask = 0;
-}
-
-void init_timer() {
-  for(int i = 0; i < PINS_SIZE; i++) {
-    gpio_init(pins[i]);
-    gpio_set_dir(pins[i], GPIO_OUT);
-    // Son ánodos
-    gpio_set_outover(pins[i], GPIO_OVERRIDE_INVERT);
-  }
-}
+#include "../Menu/common.h"
 
 void timer_turn_led_on() {
-  gpio_set_mask(timer_mask);
+  gpio_set_mask(mask);
 }
 
 void clear_timer() {
-  gpio_clr_mask(timer_mask);
+  gpio_clr_mask(mask);
 }
 
 void set_timer(unsigned int _min, unsigned int _sec) {
@@ -143,19 +127,19 @@ void dec_timer() {
           break;
       }
       // turn leds on
-      timer_mask = bits[timer_val] << PIN_A;
-      gpio_set_mask(timer_mask);
-      sleep_ms(timer_delay);
-      gpio_clr_mask(timer_mask);
+      mask = bits[timer_val] << PIN_A;
+      gpio_set_mask(mask);
+      sleep_ms(delay);
+      gpio_clr_mask(mask);
     }
     // endfor
     dec_ctr();
   } else {
     set_zeros();
-    timer_mask = bits[timer_val] << PIN_A;
-    gpio_set_mask(timer_mask);
-    sleep_ms(timer_delay);
-    gpio_clr_mask(timer_mask);
+    mask = bits[timer_val] << PIN_A;
+    gpio_set_mask(mask);
+    sleep_ms(delay);
+    gpio_clr_mask(mask);
   }
   // endif
 }
