@@ -2,6 +2,7 @@
 #include "hardware/gpio.h"
 #include "pin_list.h"
 #include "timer.h"
+#include "../Menu/bits.h"
 
 void timer_construct(const int a[]) {
   for(int i = 0; i < PINS_SIZE; i++) {
@@ -52,59 +53,55 @@ void preset_sec() {
   sec = 59;
 }
 
-int is_timer_over(){
+bool is_time_over(){
   if(min == 0 && sec == 0) {
-    return 1;
+    return true;
   }
-  return 0;
+  return false;
 }
 
 unsigned int get_ctr() {
-  return ctr;
+  return timer_ctr;
 }
 
 void inc_ctr() {
-  ctr++;
+  timer_ctr++;
 }
 
 void reset_ctr() {
-  ctr = 0;
+  timer_ctr = 0;
 }
 
-unsigned int get_val() {
-  return val;
-}
-
-void set_anode_1() {
+void turn_minute_1() {
   gpio_put(D1, 0);
   gpio_put(D2, 1);
   gpio_put(D3, 1);
   gpio_put(D4, 1);
-  val = min / 10;
+  timer_val = min / 10;
 }
 
-void set_anode_2() {
+void turn_minute_0() {
   gpio_put(D1, 1);
   gpio_put(D2, 0);
   gpio_put(D3, 1);
   gpio_put(D4, 1);
-  val = min % 10;
+  timer_val = min % 10;
 }
 
-void set_anode_3() {
+void turn_sec_1() {
   gpio_put(D1, 1);
   gpio_put(D2, 1);
   gpio_put(D3, 0);
   gpio_put(D4, 1);
-  val = sec / 10;
+  timer_val = sec / 10;
 }
 
-void set_anode_4() {
+void turn_sec_0() {
   gpio_put(D1, 1);
   gpio_put(D2, 1);
   gpio_put(D3, 1);
   gpio_put(D4, 0);
-  val = sec % 10;
+  timer_val = sec % 10;
 }
 
 void set_zeros() {
@@ -112,18 +109,53 @@ void set_zeros() {
   gpio_put(D2, 0);
   gpio_put(D3, 0);
   gpio_put(D4, 0);
-  val = 0;
+  timer_val = 0;
 }
 
 void dec_ctr() {
-  if(ctr == 50) {
+  if(timer_ctr == 50) {
     if(sec == 0) {
       min--;
       sec = 59;
     } else {
       sec--;
     }
-    ctr = 0;
+    timer_ctr = 0;
   }
-  ctr++;
+  timer_ctr++;
+}
+
+void dec_timer() {
+  if (!is_time_over()) {
+    for (int i = 0; i < 4; i++) {
+      switch (i) {
+        case 0:
+          turn_minute_1();
+          break;
+        case 1:
+          turn_minute_0();
+          break;
+        case 2:
+          turn_sec_1();
+          break;
+        case 3:
+          turn_sec_0();
+          break;
+      }
+      // turn leds on
+      timer_mask = bits[timer_val] << PIN_A;
+      gpio_set_mask(timer_mask);
+      sleep_ms(timer_delay);
+      gpio_clr_mask(timer_mask);
+    }
+    // endfor
+    dec_ctr();
+  } else {
+    set_zeros();
+    timer_mask = bits[timer_val] << PIN_A;
+    gpio_set_mask(timer_mask);
+    sleep_ms(timer_delay);
+    gpio_clr_mask(timer_mask);
+  }
+  // endif
 }
