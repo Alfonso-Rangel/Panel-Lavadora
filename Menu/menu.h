@@ -20,16 +20,21 @@ static unsigned int menu_count = 0;
 
 /* @brief Setea una 'O' en el  primer ánado*/
 void set_o();
+
 /* @brief Setea una 'P' en el segundo ánado*/
 void set_p();
+
 /* @brief Setea una 'C' en el tercer ánado*/
 void set_c();
+
 /* @brief Setea 1, 2 o 3 en el cuarto ánado*/
 void set_123();
+
 /* @brief Retorna el numero de la opción escogida*/
 unsigned int get_opc();
-/* @brief V1 del código.
- * Lo pongo en esta función
- * para modularizar
- */
-void turn_on_leds();
+
+/* @brief Enciende en las opciones*/
+void turn_on_options();
+
+/* @brief PRUEBA*/
+void test();

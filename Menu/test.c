@@ -19,8 +19,9 @@ int main() {
   
   while (true) {
     if (is_on_off_btn_press()) {
-      turn_on_leds();
+      test();
     }
+    // endif
   }
   // endwhile
 }
