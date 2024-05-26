@@ -17,3 +17,15 @@ void init() {
     gpio_set_outover(pins[i], GPIO_OVERRIDE_INVERT);
   }
 }
+
+void set_mask(uint32_t _mask) {
+  mask = bits[_mask] << PIN_A;
+}
+
+void turn_leds_on() {
+  gpio_set_mask(mask);
+}
+
+void clr_mask() {
+  gpio_clr_mask(mask);
+}

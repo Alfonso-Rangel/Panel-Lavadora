@@ -56,3 +56,12 @@ void construct(const int*);
 
 /* @brief*/
 void init();
+
+/* @brief*/
+void set_mask(uint32_t);
+
+/* @brief*/
+void turn_leds_on();
+
+/* @brief*/
+void clr_mask();
