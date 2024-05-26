@@ -1,13 +1,4 @@
 #include <stdio.h>
-#define PINS_SIZE 11
-
-static uint32_t pins[PINS_SIZE];
-
-/* @brief Tiempo de retardo */
-static uint32_t const menu_delay = 5;
-
-/* @brief Tiempo de retardo */
-static uint32_t menu_mask = 0;
 
 /* @brief El número o letra que se desea prender */
 static unsigned int menu_val = 0;
@@ -27,10 +18,6 @@ static unsigned int menu_anode4 = 1;
 
 static unsigned int menu_count = 0;
 
-/* @brief Constructor*/
-void menu_construct(const int*);
-/* @brief Inicializa*/
-void init_menu();
 /* @brief Setea una 'O' en el  primer ánado*/
 void set_o();
 /* @brief Setea una 'P' en el segundo ánado*/

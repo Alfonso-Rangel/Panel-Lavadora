@@ -3,22 +3,8 @@
 #include "pin_list.h"
 #include "menu.h"
 #include "button.h"
-#include "bits.h"
-
-void menu_construct(const int* a) {
-  for (int i = 0; i < PINS_SIZE; i++) {
-    pins[i] = a[i];
-  }
-}
-
-void init_menu() {
-  for (int i = 0; i < PINS_SIZE; i++) {
-    gpio_init(pins[i]);
-    gpio_set_dir(pins[i], GPIO_OUT);
-    // Son ánodos
-    gpio_set_outover(pins[i], GPIO_OVERRIDE_INVERT);
-  }
-}
+#include "common.h"
+#include "../Temporizador/timer.h"
 
 void set_o() {
   gpio_put(D1, 0);
@@ -67,33 +53,44 @@ unsigned int get_opc() {
 }
 
 void turn_on_leds() {
-  for (int i = 0; i < 4; i++) {
-    switch (i) {
-      case 0:
-        set_o();
-        break;
+  if (!is_ok_btn_press()) {
+    for (int i = 0; i < 4; i++) {
+      switch (i) {
+        case 0:
+          set_o();
+          break;
+        case 1:
+          set_p();
+          break;
+        case 2:
+          set_c();
+          break;
+        case 3:
+          set_123();
+          break;
+      }
+      if (i < 3) {
+        mask = bits[menu_val] << PIN_A;
+      } else {
+        mask = bits[menu_anode4] << PIN_A;
+      }
+      gpio_set_mask(mask);
+      sleep_ms(delay);
+      gpio_clr_mask(mask);
+    }
+    // endfor
+  } else {
+    switch (menu_anode4) {
       case 1:
-        set_p();
+        set_timer(1, 0);
         break;
       case 2:
-        set_c();
+        set_timer(2, 0);
         break;
       case 3:
-        set_123();
+        set_timer(3, 0);
         break;
     }
-    if (i < 3) {
-      menu_mask = bits[menu_val] << PIN_A;
-    } else {
-      menu_mask = bits[menu_anode4] << PIN_A;
-    }
-    gpio_set_mask(menu_mask);
-    sleep_ms(menu_delay);
-    gpio_clr_mask(menu_mask);
-    if (!get_ok_btn()) {
-      break;
-    }
-    // endif
+    dec_timer();
   }
-  // endfor
 }
