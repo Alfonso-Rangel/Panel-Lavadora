@@ -3,6 +3,7 @@ add_executable(
   test.c
   menu.c
   button.c
+  common.c
   ../Temporizador/timer.c
 )
 
