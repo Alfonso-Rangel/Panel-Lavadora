@@ -7,37 +7,38 @@ static uint32_t pins[PINS_SIZE];
 static uint32_t const menu_delay = 5;
 
 /* @brief Tiempo de retardo */
-static uint32_t mask = 0;
+static uint32_t menu_mask = 0;
 
-/* @brief El número que se desea prender */
-static unsigned int val = 0;
+/* @brief El número o letra que se desea prender */
+static unsigned int menu_val = 0;
 
-static unsigned int anode4 = 1;
+/* @brief El valor que debe ir en ánodo 1 (O)*/
+static unsigned int const menu_anode1 = 0;
 
-static unsigned int count = 0;
+/* @brief El valor que debe ir en ánodo 2 (P)*/
+static unsigned int const menu_anode2 = 24;
 
-/* @brief*/
-static int const bits[] = {
-  0x3f, // 0-o
-  0x06, // 1
-  0x5b, // 2
-  0x4f, // 3
-  0x39, // c
-  0x73 // p
-};
+/* @brief El valor que debe ir en ánodo 3 (C) */
+static unsigned int const menu_anode3 = 12;
+
+/* @brief El valor que debe ir en ánodo 4
+ * entre 1-3 */
+static unsigned int menu_anode4 = 1;
+
+static unsigned int menu_count = 0;
 
 /* @brief Constructor*/
-void construct(const int*);
+void menu_construct(const int*);
 /* @brief Inicializa*/
-void init();
-/* @brief Setea el primer ánado*/
-void set_anode_1();
-/* @brief Setea el segundo ánado*/
-void set_anode_2();
-/* @brief Setea el tercer ánado*/
-void set_anode_3();
-/* @brief Setea el cuarto ánado*/
-void set_anode_4();
+void init_menu();
+/* @brief Setea una 'O' en el  primer ánado*/
+void set_o();
+/* @brief Setea una 'P' en el segundo ánado*/
+void set_p();
+/* @brief Setea una 'C' en el tercer ánado*/
+void set_c();
+/* @brief Setea 1, 2 o 3 en el cuarto ánado*/
+void set_123();
 /* @brief Retorna el valor*/
 unsigned int get_val();
 /* @brief V1 del código.
