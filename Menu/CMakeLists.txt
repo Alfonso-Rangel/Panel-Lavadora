@@ -1,4 +1,11 @@
-add_executable(menu test.c menu.c button.c)
+add_executable(
+  menu
+  test.c
+  menu.c
+  button.c
+  ../Temporizador/timer.c
+)
+
 target_link_libraries(menu pico_stdlib)
 
 pico_enable_stdio_usb(menu 1)
