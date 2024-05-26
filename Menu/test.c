@@ -4,36 +4,28 @@
 #include "pin_list.h"
 #include "menu.h"
 #include "button.h"
+#include "bits.h"
+//#include "../Temporizador/timer.h"
 int main() {
   int pins[] = {
-    PIN_A,
-    PIN_B,
-    PIN_C,
-    PIN_D,
-    PIN_E,
-    PIN_F,
-    PIN_G,
-    D1,
-    D2,
-    D3,
-    D4
+    PIN_A, PIN_B, PIN_C, PIN_D, PIN_E, PIN_F, PIN_G,
+    D1, D2, D3, D4
   };
-  construct(pins);
+  menu_construct(pins);
   stdio_init_all();
-  init();
+  init_menu();
 
-  int32_t mask;
+  timer_construct(pins);
+  init_timer();
+  set_timer(1, 25);
 
   init_buttons();
 
   while (true) {
     if (is_on_off_btn_press()) {
-      bool val1 = is_ok_btn_press();
-      bool val2 = is_mov_btn_press();
+      //dec_timer();
+      turn_on_leds();
     }
-    //bool val = is_on_off_btn_press();
-    //bool val = is_ok_btn_press();
-    //bool val = is_mov_btn_press();
-    sleep_ms(1000);
   }
+  // endwhile
 }
