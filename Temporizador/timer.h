@@ -16,12 +16,6 @@ static unsigned int timer_ctr = 0;
  *
  * dec_ctr hace todo eso.*/
 
-/* @brief*/
-void timer_turn_led_on();
-
-/* @brief*/
-void clear_timer();
-
 /* @brief Inicializa los minutos y los segundos */
 void set_timer(unsigned int, unsigned int);
 
@@ -41,7 +35,7 @@ void dec_sec();
 void preset_sec();
 
 /* @brief Verifica si el tiempo se acabo */
-bool is_time_over();
+bool is_time_out();
 
 /* @brief Regresa el valor del contador */
 unsigned int get_ctr();
@@ -68,11 +62,8 @@ void turn_sec_1();
  * y se establece el número que se encenderá */
 void turn_sec_0();
 
-/* @brief Agrega ceros a los cuatro ánodos */
-void set_zeros();
-
-/* @brief Decrementa el contador */
-void dec_ctr();
-
 /* @brief Decrementa el temporizador*/
 void dec_timer();
+
+/* @brief Agrega ceros a los cuatro ánodos */
+void set_zeros();

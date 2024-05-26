@@ -2,7 +2,7 @@
 #include "pico/stdlib.h"
 #include "hardware/gpio.h"
 #include "timer.h"
-#include "pin_list.h"
+#include "../Menu/pin_list.h"
 #include "../Menu/common.h"
 
 int main() {
@@ -13,10 +13,14 @@ int main() {
   construct(pins);
   stdio_init_all();
   init();
-  set_timer(5, 0);
+  set_timer(1, 0);
 
   while(true) {
-    dec_timer();
+    if (!is_time_out()) {
+      dec_timer();
+    } else {
+      set_zeros();
+    }
   }
   // endwhile
 }
