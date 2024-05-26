@@ -1,5 +1,6 @@
 add_executable(Controlador
     Controlador.cpp
+    Test.cpp
 )
 
 pico_enable_stdio_usb(Controlador 1)

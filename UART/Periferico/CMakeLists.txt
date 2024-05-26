@@ -1,5 +1,6 @@
 add_executable(Periferico
     Periferico.cpp
+    Test.cpp
 )
 
 pico_enable_stdio_usb(Periferico 1)
