@@ -39,8 +39,8 @@ void set_p();
 void set_c();
 /* @brief Setea 1, 2 o 3 en el cuarto ánado*/
 void set_123();
-/* @brief Retorna el valor*/
-unsigned int get_val();
+/* @brief Retorna el numero de la opción escogida*/
+unsigned int get_opc();
 /* @brief V1 del código.
  * Lo pongo en esta función
  * para modularizar

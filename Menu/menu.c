@@ -62,8 +62,8 @@ void set_123() {
   // endif
 }
 
-unsigned int get_val() {
-  return menu_val;
+unsigned int get_opc() {
+  return menu_anode4;
 }
 
 void turn_on_leds() {
@@ -90,6 +90,10 @@ void turn_on_leds() {
     gpio_set_mask(menu_mask);
     sleep_ms(menu_delay);
     gpio_clr_mask(menu_mask);
+    if (!get_ok_btn()) {
+      break;
+    }
+    // endif
   }
   // endfor
 }
