@@ -33,3 +33,5 @@ bool is_mov_btn_press();
 bool is_ok_btn_press();
 /* @brief Regresa el valor del botón mov*/
 bool get_mov_btn();
+/* @brief Regresa el valor del botón ok*/
+bool get_ok_btn();

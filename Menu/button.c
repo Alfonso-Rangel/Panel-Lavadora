@@ -68,3 +68,7 @@ bool is_ok_btn_press() {
 bool get_mov_btn() {
   return gpio_get(MOV_BUTTON);
 }
+
+bool get_ok_btn() {
+  return gpio_get(OK_BUTTON);
+}
