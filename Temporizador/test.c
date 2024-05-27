@@ -13,7 +13,7 @@ int main() {
   construct(pins);
   stdio_init_all();
   init();
-  set_timer(1, 0);
+  set_timer(20, 0);
 
   while(true) {
     if (!is_time_out()) {
