@@ -1,4 +1,6 @@
 add_executable(Temperatura
+	temperatura.c
+	gpio_utils.c
     
 )
 
