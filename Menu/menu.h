@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+char * modo;
 /* @brief El número o letra que se desea prender */
 static unsigned int menu_val = 0;
 

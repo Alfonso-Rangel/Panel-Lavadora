@@ -1,6 +1,11 @@
 #include <iostream>
 #include "../include/Events.h"
 #include "../include/Controlador.h"
+#include "../Menu/button.h"
+#include "../Menu/menu.h"
+#include "../Temporizador/timer.h"
+
+char * opcion = "MANUAL";
 
 int state_0() {
     /*  Este estado controla el encendido y apagado.
@@ -8,8 +13,11 @@ int state_0() {
         Si se ha precionado el boton de encendido:
             regresa ON
         En otro caso:
-            regresa MANTENET_ESTADO
+            regresa MANTENER_ESTADO
     */
+    if (is_on_off_btn_press()) {
+        return ON;
+    }
     return MANTENER_ESTADO;
 }
 
@@ -25,27 +33,56 @@ int state_1() {
             setModo(modo) <- Se supone que aquí se debe tener el modo de lavado almacenado en una variable
             regresa SEL_MODO
         En otro caso:
-            regresa OFF
+            regresa MANTENER_ESTADO
     */
-    return OFF;
+    if (is_on_off_btn_press()) {
+        return OFF;
+    }
+    else if (is_ok_btn_press()) {
+        switch (get_opc()) {
+        case 1: 
+            opcion = "NORMAL";
+            break;
+        case 2: 
+            opcion = "RAPIDO";
+            break;
+         case 3: 
+            opcion = "MANUAL";
+            break;
+        default:
+            opcion = "MANUAL";
+            break;
+        }
+        return SEL_MODO;
+    }
+    return MANTENER_ESTADO;
 }
 
 int state_2() {
     /*  En este estado se ejecuta la comunicación con el periférico (leds de carga de ropa y temperatura)
         ------------------------------------------------------
-        Si se ha precionado el boton de apagado:
-            regresa OFF
-        En otro caso:
-            Controlador controlador(uart1, 4, 5, 115200);
-            char* instruccion = getModo(); <- Se obtiene el modo almacenado en una variable 
-            controlador.enviar_instruccion(instruccion);
-            sleep_ms(1000); // Esperar un poco antes de leer la respuesta
-            char* respuesta = controlador.obtener_respuesta();
-            temporizador.setTiempo(respuesta) <- Deberías tener una funcion que le indique al temporizador desde dónde iniciar 
-            la cuenta regresiva
-            regresa INICIA_TEMP;
     */
-    return INICIA_TEMP;
+    if (is_on_off_btn_press()) {
+        return OFF;
+    }
+    else {
+        Controlador controlador(uart1, 4, 5, 115200);
+        controlador.enviar_instruccion(modo);
+        sleep_ms(1000); // Esperar un poco antes de leer la respuesta 
+
+        const char* respuesta = controlador.obtener_respuesta();
+        int num = 0;
+
+        try {
+            num = std::stoi(respuesta);  // convierte char* a std::string automáticamente
+        } catch (const std::invalid_argument& e) {
+            num = 0; 
+        } catch (const std::out_of_range& e) {
+            num = 0;
+        }
+        set_timer(num, 0);
+        return INICIA_TEMP;
+    }
 }
 
 
@@ -60,5 +97,14 @@ int state_3() {
             contunúa la cuanta regresiva
             regresa MANTENER_ESTADO 
     */
-    return TIMEOUT;
+    if (is_on_off_btn_press()) {
+        return OFF;
+    }
+    else if(is_time_out()) {
+        return TIMEOUT;
+    }
+    else {
+        dec_timer();
+        return MANTENER_ESTADO;
+    }
 }
