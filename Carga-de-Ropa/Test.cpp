@@ -5,9 +5,9 @@
 
 int main() {
     stdio_init_all();
-    int leds_gpio[10] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11}; // Define los pines GPIO para los LEDs
-    int button_up_gpio = 13; // Define el botón de incremento
-    int button_down_gpio = 12; // Define el botón de decremento
+    int leds_gpio[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; // Define los pines GPIO para los LEDs
+    int button_up_gpio = 11; // Define el botón de incremento
+    int button_down_gpio = 10; // Define el botón de decremento
     
     NivelCarga nivelCarga(leds_gpio, button_up_gpio, button_down_gpio);
     nivelCarga.init();

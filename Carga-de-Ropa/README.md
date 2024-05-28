@@ -30,3 +30,4 @@ Una lista de materiales necesarios para visualizar el módulo del proyecto.
 - [x] La clase NivelCarga proporciona métodos para *seleccionar*, *ajustar* y *obtener* el nivel de carga, además de *encender* los LEDs.
 - [x] Se ha integrado la clase NivelCarga con la Raspberry Pico W para permitir la interacción del usuario con los diferentes niveles de carga.
 - [x] La documentación del código y los comentarios son claros y completos para facilitar la comprensión y mantenimiento del sistema.
+
