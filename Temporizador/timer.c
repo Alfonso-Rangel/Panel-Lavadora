@@ -4,6 +4,20 @@
 #include "timer.h"
 #include "../Menu/common.h"
 
+void set_time(const char* tiempo) {
+	char* endptr;
+    int conversion = strtol(tiempo, &endptr, 10);
+
+    // Verifica si hubo errores en la conversión
+    if (*endptr != '\0' || tiempo == endptr) {
+        min = 99;
+    }
+	else {
+		min = conversion;
+	}
+	sec = 0;
+}
+
 void set_timer(unsigned int _min, unsigned int _sec) {
   min = _min;
   sec = _sec;

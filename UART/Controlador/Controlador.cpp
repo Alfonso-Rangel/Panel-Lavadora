@@ -9,7 +9,7 @@ Controlador::Controlador(uart_inst_t* uart_id, uint tx_pin, uint rx_pin, uint ba
 
 void Controlador::enviar_instruccion(const char* str) {
     uart_puts(uart_id_, str);
-    uart_putc(uart_id_, '\n'); 
+    uart_putc(uart_id_, '\0'); 
 }
 
 char* Controlador::obtener_respuesta() {

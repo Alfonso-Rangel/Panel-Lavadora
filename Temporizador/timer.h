@@ -67,3 +67,5 @@ void dec_timer();
 
 /* @brief Agrega ceros a los cuatro ánodos */
 void set_zeros();
+
+void set_time(const char* tiempo);

@@ -23,15 +23,15 @@ char* obtener_respuesta(const char* str) {
 
 int main() {
     stdio_init_all();
-    Periferico periferico(uart1, 4, 5, 115200); // UART0, TX=GP0, RX=GP1, Baud rate = 115200
+    Periferico periferico(uart0, 0, 1, 115200); // UART0, TX=GP0, RX=GP1, Baud rate = 115200
 
     while (true) {
         char* instruccion =  periferico.obtener_instruccion();
-        printf("Instrucción recibida: %s\n", instruccion);
+        //printf("Instrucción recibida: %s\n", instruccion);
         if (instruccion[0] != '\0' || instruccion[0] != '\n') {
             char* respuesta = obtener_respuesta(instruccion);
             periferico.enviar_respuesta(respuesta);
-            printf("Respuesta dada: %s\n", respuesta);
+            //printf("Respuesta dada: %s\n", respuesta);
         }
         sleep_ms(1000);
     }

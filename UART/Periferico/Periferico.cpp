@@ -25,5 +25,5 @@ char* Periferico::obtener_instruccion() {
 
 void Periferico::enviar_respuesta(char* respuesta) {
     uart_puts(uart_id_, respuesta);
-    uart_putc(uart_id_, '\n');
+    uart_putc(uart_id_, '\0');
 }
