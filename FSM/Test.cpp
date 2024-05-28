@@ -130,7 +130,7 @@ int main() {
             case 2:
                 fsm.computeNextState(state_2()); 
                 break;
-            default: return;
+            default: break;
         }
     }
     return 0;

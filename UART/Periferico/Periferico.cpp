@@ -15,7 +15,7 @@ char* Periferico::obtener_instruccion() {
     while (uart_is_readable(uart_id_)) {
         if (index >= sizeof(buffer) - 1) break;
         char c = uart_getc(uart_id_);
-        if (c == '\n' || c == '\0') { break; }
+        if (c == '\0') { break; }
         buffer[index++] = c;
     }
     buffer[index] = '\0';

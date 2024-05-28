@@ -18,7 +18,5 @@ void FSM::computeNextState(int event) {
     auto key = std::make_tuple(current_state, event);
     if (transitions.find(key) != transitions.end()) {
         current_state = transitions[key];
-    } else {
-        throw std::runtime_error("Transition not defined for the given state and event.");
     }
 }

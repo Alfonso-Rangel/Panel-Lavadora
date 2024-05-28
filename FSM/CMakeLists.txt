@@ -2,8 +2,9 @@ add_executable(FSM
     FSM.cpp
     Test.cpp
     ../UART/Controlador/Controlador.cpp
-    ../Temporizador.time.c
+    ../Temporizador/timer.c
     ../Menu/button.c
+    ../Menu/menu.c
     ../Menu/common.c
 )
 
